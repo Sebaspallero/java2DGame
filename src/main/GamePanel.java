@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -32,6 +33,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     //CREATE PLAYER
     Player player = new Player(this, keyH);
+
+    //CREATE TILE
+
+    TileManager tileManager = new TileManager(this);
 
     //FPS: Frames Per Second, how many times the screen updates per second (30 or 60)
     int FPS = 60;
@@ -97,6 +102,8 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
+        tileManager.draw(g2);
+
         player.draw(g2);
 
         g2.dispose();
@@ -105,6 +112,14 @@ public class GamePanel extends JPanel implements Runnable{
 
     public int getTILE_SIZE() {
         return TILE_SIZE;
+    }
+
+    public int getMAX_SCREEN_COL() {
+        return MAX_SCREEN_COL;
+    }
+
+    public int getMAX_SCREEN_ROW() {
+        return MAX_SCREEN_ROW;
     }
 
 }
